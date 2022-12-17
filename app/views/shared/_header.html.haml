@@ -1,0 +1,13 @@
+%header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
+  %a.d-flex.align-items-center.col-md-3.mb-2.mb-md-0.text-dark.text-decoration-none{:href => "/"}
+    Home
+
+  .col-md-3.text-end
+    - if current_user.present?
+      = button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger me-2"
+    - else
+      = link_to new_user_session_path do
+        %button.btn.btn-outline-primary.me-2{:type => "button"} Login
+
+      = link_to new_user_registration_path do
+        %button.btn.btn-primary{:type => "button"} Sign-up

@@ -1,0 +1,42 @@
+<h1 class="text-center">Create Your Account</h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <label>
+    <p class="label-txt">ENTER YOUR EMAIL</p>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">ENTER YOUR NAME</p>
+    <%= f.text_field :name, autocomplete: "name", class: 'input' %>
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">
+      ENTER YOUR PASSWORD
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    </p>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <label>
+    <p class="label-txt">PASSWORD CONFIRMATION</p>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <%= f.submit "Sign up" %>
+
+  <%= render "devise/shared/links" %>
+<% end %>
+

@@ -1,0 +1,56 @@
+%h1.text-center Dashboard
+
+.col-md-12.mb-5
+  %h2 Record your gulocose level
+
+  = form_for :glucometer_reading, url: patient_glucometer_readings_path(current_user.patient) do |f|
+    = f.label :"Gluco Meter Readin (mg/dl)"
+    = f.number_field :reading
+
+    = f.submit :record
+
+.col-md-12.mb-5
+  %h2 Reports
+  .col-md-3
+    %label Select Date
+  .col-md-5
+    #datepicker.input-group.date
+      %input#date.form-control{:type => "text"}/
+      %span.input-group-append
+        %span.input-group-text.bg-light.d-block
+          %i.fa.fa-calendar
+
+.col-md-12
+  %h3 Daily Report
+  %p Daily report will include all the data from start from when user is created till the date selected in the above field
+  = link_to "Download Daily Report", "#", class: "generate-report", data: { url: patient_glucometer_readings_path(current_user.patient, format: :csv), report_type: 'daily' }
+
+.col-md-12
+  %h3 Month to Date Report
+  %p Month to date report will include all the records starting from beginning of month which is selected in the date field, Every row of that report represents aggregation of one day
+
+  = link_to "Download Month to Date Report", "#", class: "generate-report", data: { url: patient_glucometer_readings_path(current_user.patient, format: :csv), report_type: 'month_to_date' }
+
+.col-md-12.mb-5
+  %h3 Monthly Report
+  %p Monthly report will include all the data from start and every row will represent one month of data
+
+  = link_to "Download Monthly Report", "#", class: "generate-report", data: { url: patient_glucometer_readings_path(current_user.patient, format: :csv), report_type: 'monthly' }
+
+.col-md-12
+  %h2 Last 5 days
+  %table.table
+    %thead
+      %tr
+        %th Date
+        %th Time
+        %th Reading
+    %tbody
+      - @records.each do |record|
+        %tr
+          %td
+            = record.record_date
+          %td
+            = record.record_time
+          %td
+            = record.reading
