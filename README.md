@@ -17,4 +17,13 @@ Here is database schema Diagram
 
 <img width="627" alt="image" src="https://user-images.githubusercontent.com/23502541/208263559-f25e098b-2197-4ab7-a007-103688bbeed4.png">
 
+#
+
+# Suggested Improvements
+
+* Redesign dashboard
+* Introduce doctor signup
+* Introduct assign patient to doctor
+* Add visual reports
+* Improve test coverage
 
