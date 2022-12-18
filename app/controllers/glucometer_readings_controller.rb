@@ -15,11 +15,10 @@ class GlucometerReadingsController < ApplicationController
     @glucometer_reading = @patient.glucometer_readings.new(glucometer_reading_params)
     if @glucometer_reading.save
       flash[:notice] = "Reading saved successfully"
-      redirect_back fallback_location: root_path
     else
       flash[:alert] = @glucometer_reading.errors.full_messages.to_sentence
-      redirect_back fallback_location: root_path
     end
+    redirect_back fallback_location: root_path
   end
 
   private

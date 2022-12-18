@@ -16,7 +16,7 @@ class ReportGenerator < ApplicationService
 
   def daily_report_data
     @records = @patient.glucometer_readings
-    @records = @patient.glucometer_readings.where("created_at <= ?", DateTime.strptime(@end_date, "%m/%d/%Y").end_of_day) if @end_date.present?
+    @records = @records.where("created_at <= ?", DateTime.strptime(@end_date, "%m/%d/%Y").end_of_day) if @end_date.present?
 
     fetch_dates
 
@@ -58,7 +58,7 @@ class ReportGenerator < ApplicationService
 
   def monthly_report_data
     @records = @patient.glucometer_readings
-    @records = @patient.glucometer_readings.where("created_at <= ?", DateTime.strptime(@end_date, "%m/%d/%Y").end_of_month) if @end_date.present?
+    @records = @records.where("created_at <= ?", DateTime.strptime(@end_date, "%m/%d/%Y").end_of_month) if @end_date.present?
 
     @start_day = Date.today
     @end_day = 1.day.ago
